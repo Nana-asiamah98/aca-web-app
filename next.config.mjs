@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_CMS_API_URL: "https://site-api.datocms.com",
+    NEXT_PUBLIC_CMS_API_TOKEN: "51f39259855732db02d00699f41740",
+  },
   images: {
     remotePatterns: [
       {

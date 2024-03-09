@@ -1,0 +1,14 @@
+{
+  "programming": {
+    "skillName": "Programming",
+    "skillValues": ["Code1", "Code2", "Code3"]
+  },
+  "brains": {
+    "skillName": "Softwares",
+    "skillValues": ["Software1", "Software2", "Software3"]
+  },
+  "languages": {
+    "skillName": "Languages",
+    "skillValues": ["Languages1", "Languages2", "Languages3"]
+  }
+}

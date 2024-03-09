@@ -1,0 +1,29 @@
+{
+  "publications": [
+    {
+      "title": "Publication 1",
+      "description": "Publication Description 1",
+      "tags": ["Tag 1", "Tag 2", "Tag 3"]
+    },
+    {
+      "title": "Publication 1",
+      "description": "Publication Description 2",
+      "tags": ["Tag 1", "Tag 2", "Tag 3"]
+    },
+    {
+      "title": "Publication 1",
+      "description": "Publication Description 3",
+      "tags": ["Tag 1", "Tag 2", "Tag 3"]
+    },
+    {
+      "title": "Publication 1",
+      "description": "Publication Description 4",
+      "tags": ["Tag 1", "Tag 2", "Tag 3"]
+    },
+    {
+      "title": "Publication 1",
+      "description": "Publication Description 5",
+      "tags": ["Tag 1", "Tag 2", "Tag 3"]
+    }
+  ]
+}
