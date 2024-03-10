@@ -17,26 +17,42 @@ export interface IResponseDTO {
   data: any;
 }
 
-export const Hero = async () => {
-  const results = await fetch("https://site-api.datocms.com/items?type=userinfo", {
+const query = `query {
+  # add
+  heroCollection{
+    items{
+      firstName,
+      lastName,
+      profession,
+      schools,
+      linkedInUrl
+    }
+  }
+}`;
 
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_CMS_API_TOKEN}`,
-      Accept: "application/json",
-      "X-Api-Version": "3",
-    },
-  });
+export const HeroService = async () => {
+  /* const results = await fetch(
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    }
+  );
   if (results.ok) {
     console.log(results.json);
-  }
-  /* try {
-    const results = await axios.get(
-      `${process.env.NEXT_PUBLIC_CMS_API_URL}/items`,
+  } */
+  try {
+    const results = await axios.post(
+      `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/`,
+      JSON.stringify({ query }),
       {
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CMS_API_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN}`,
           "Content-Type": "application/json",
-          "X-Api-Version": 3,
         },
       }
     );
@@ -46,6 +62,7 @@ export const Hero = async () => {
       status: results.status,
       timestamp: new Date(),
     };
+    return response;
   } catch (error) {
     const err = error as AxiosError;
     const errorResponse: IResponseDTO = err?.response?.data as IResponseDTO;
@@ -56,5 +73,5 @@ export const Hero = async () => {
       timestamp: new Date(),
     };
     return response;
-  } */
+  }
 };

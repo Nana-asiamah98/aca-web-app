@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io";
 import { SiGooglescholar } from "react-icons/si";
-import { IHero } from "@/utils/Interfaces";
+import { IHero, Socials, UserInfo } from "@/utils/Interfaces";
+import { HeroService, ICustomRESTResponse } from "@/service/HeroService";
+import { Url } from "next/dist/shared/lib/router/router";
 
 export const Hero = ({
   imageURL,
@@ -13,6 +15,39 @@ export const Hero = ({
   interest,
   education,
 }: IHero) => {
+  const [heroData, setHeroData] = useState<IHero>();
+
+  useEffect(() => {
+    HeroService().then((response: ICustomRESTResponse) => {
+      if (!response?.isError) {
+        const { heroCollection } = response?.data;
+        const { firstName, lastName, profession, schools, linkedInUrl } =
+          heroCollection?.items[0] ?? {};
+
+        const userInfo: UserInfo = {
+          firstName: firstName,
+          lastName: lastName,
+          aboutMe: "",
+          profession: profession,
+          schools: schools,
+        };
+
+        const socials: Socials = {
+          linkedInURL: linkedInUrl,
+          googleScholarURL: "",
+          xTwitterURL: "",
+        };
+
+        const heroInfo: IHero = {
+          userInfo: userInfo,
+          socials: socials,
+        };
+
+        setHeroData(heroInfo);
+      }
+    });
+  }, []);
+
   return (
     <div className="flex flex-row justify-start px-52 text-white my-10 mx-auto w-full h-auto">
       <div className="flex flex-col w-[20%] items-center justify-between gap-4">
@@ -30,22 +65,27 @@ export const Hero = ({
         </div>
         <div className="flex flex-col items-center gap-5">
           <span className="font-bold text-lg">
-            {userInfo?.firstName
-              ? `${userInfo?.firstName}  ${userInfo.lastName}`
+            {heroData?.userInfo?.firstName
+              ? `${heroData?.userInfo?.firstName}  ${heroData?.userInfo.lastName}`
               : `Lastname Firstname`}
           </span>
           <span className="text-gray-500">
-            {userInfo?.profession ?? `Profession`}
+            {heroData?.userInfo?.profession ?? `Profession`}
           </span>
           <div className="flex flex-col items-center gap-3 mt-5">
-            <span className="text-slate-500 text-lg">
-              {userInfo?.school1 ?? `School 1`}
-            </span>
-            <span className="text-slate-500 text-lg">
-              {userInfo?.school2 ?? `School 2`}
-            </span>
+            {heroData?.userInfo?.schools &&
+              heroData?.userInfo?.schools.map(
+                (school: string, index: number) => (
+                  <span key={index} className="text-[#4D908E] text-md">
+                    {school ?? `School `}
+                  </span>
+                )
+              )}
             <div className="flex flex-row justify-between space-x-4">
-              <Link href={`#0`}>
+              <Link
+                href={heroData?.socials?.linkedInURL ?? "#0"}
+                target={"_blank"}
+              >
                 <IoLogoLinkedin color="#4D908E" size={40} />
               </Link>
               <Link href={`#0`}>

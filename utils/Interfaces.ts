@@ -1,6 +1,6 @@
 export interface IHero {
-  imageURL: string;
-  userInfo: UserInfo;
+  imageURL?: string;
+  userInfo?: UserInfo;
   socials: Socials;
   interest?: string[];
   education?: Education[];
@@ -10,8 +10,7 @@ export interface UserInfo {
   firstName: string;
   lastName: string;
   profession: string;
-  school1: string;
-  school2: string;
+  schools: string[];
   aboutMe: string;
 }
 

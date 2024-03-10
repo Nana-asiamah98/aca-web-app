@@ -34,7 +34,7 @@ export default function Home() {
       />
       {/*END - HERO */}
 
-      {/*START - SKILLS */}
+      {/*START - SKILLS */} 
       <Skills
         brains={skillsData?.brains}
         languages={skillsData?.languages}
