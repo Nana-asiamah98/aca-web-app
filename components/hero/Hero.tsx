@@ -10,6 +10,10 @@ interface IMainHero {
   mainData: IHero;
 }
 export const Hero = ({ mainData }: IMainHero) => {
+  const formulatedURL = (_imgURL: string) => {
+    const newURL: string = `https:\\${_imgURL}`;
+    return newURL;
+  };
   return (
     <div className="flex flex-row justify-start px-52 text-white my-10 mx-auto w-full h-auto">
       <div className="flex flex-col w-[20%] items-center justify-between gap-4">
@@ -20,7 +24,7 @@ export const Hero = ({ mainData }: IMainHero) => {
             height={250}
             src={
               mainData?.userAvatar?.fields?.file?.url
-                ? "https://" + mainData?.userAvatar?.fields?.file?.url
+                ? formulatedURL(mainData?.userAvatar?.fields?.file?.url)
                 : "https://media.licdn.com/dms/image/C5603AQF5Dn__JT0kPQ/profile-displayphoto-shrink_200_200/0/1607478268909?e=2147483647&v=beta&t=3mVfgUr8ScQfAprWnkFjCd7zBcvO55Ux8EnU5T5KXLk"
             }
             className="object-none w-44 h-44 rounded-full custom-position"
