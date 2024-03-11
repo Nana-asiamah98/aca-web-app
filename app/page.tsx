@@ -4,42 +4,44 @@ import { Hero } from "@/components/hero/Hero";
 import { Projects } from "@/components/projects/Projects";
 import { Publications } from "@/components/publications/Publications";
 import { Skills } from "@/components/skills/Skills";
-import { IHero, ISkill, ISkills } from "@/utils/Interfaces";
-import { useState } from "react";
-import HeroJSON from "../utils/JSONS/hero.json";
-import SkillJSON from "../utils/JSONS/skills.json";
+import { client } from "@/lib/contentful";
+import { IHero, ISkill } from "@/utils/Interfaces";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  /*  useEffect(() => {
-    Hero().then((response: any) => {
-      if (!response.isError) {
-        console.log({ response });
-      }
+  const [heroData, setHeroData] = useState<IHero>();
+  const [skillsData, setSkillsData] = useState<ISkill[]>();
+
+  useEffect(() => {
+    client.getEntries({ content_type: "hero" }).then((response: any) => {
+      const { fields } = response?.items[0];
+      const heroResponse: IHero = fields;
+      setHeroData(heroResponse);
     });
-  }, []); */
-
-  const [heroData, setHeroData] = useState<IHero>(HeroJSON);
-  const [skillsData, setSkillsData] = useState<ISkills>(SkillJSON);
-
+    client.getEntries({ content_type: "skills" }).then((response: any) => {
+      const formulatedSkillsData: ISkill[] = response?.items?.map(
+        (value: any, index: number) => {
+          const { slug, skillName, skillValues } = value?.fields;
+          const actualSkill: ISkill = {
+            skillName: skillName,
+            skillValues: skillValues,
+            slug: slug,
+          };
+          return actualSkill;
+        }
+      );
+      setSkillsData(formulatedSkillsData);
+    });
+  }, []);
 
   return (
     <main className="flex flex-col min-h-screen ">
       {/*START - HERO */}
-      <Hero
-        imageURL={heroData?.imageURL}
-        socials={heroData?.socials}
-        userInfo={heroData?.userInfo}
-        education={heroData?.education}
-        interest={heroData?.interest}
-      />
+      <Hero mainData={heroData as any} />
       {/*END - HERO */}
 
-      {/*START - SKILLS */} 
-      <Skills
-        brains={skillsData?.brains}
-        languages={skillsData?.languages}
-        programming={skillsData.programming}
-      />
+      {/*START - SKILLS */}
+      <Skills mainData={skillsData as any} />
       {/*END - SKILLS */}
 
       {/*START - PROJECTS */}
@@ -53,3 +55,15 @@ export default function Home() {
     </main>
   );
 }
+/* 
+export const getStaticProps = async () => {
+  const response = await client.getEntries({ content_type: "hero" });
+
+  return {
+    props: {
+      hero: response.items,
+      revalidate: 70,
+    },
+  };
+};
+ */

@@ -1,8 +1,11 @@
-import { ISkills } from "@/utils/Interfaces";
+import { ISkill } from "@/utils/Interfaces";
 import { Brain, Code2, Languages } from "lucide-react";
 import { Skill } from "./Skill";
 
-export const Skills = ({ brains, languages, programming }: ISkills) => {
+interface IMainSkill {
+  mainData: ISkill[];
+}
+export const Skills = ({ mainData }: IMainSkill) => {
   return (
     <div
       id="skills"
@@ -12,21 +15,40 @@ export const Skills = ({ brains, languages, programming }: ISkills) => {
         <span className="text-teal-600 text-3xl">Skills</span>
       </div>
       <div className="flex flex-row justify-between">
-        <Skill
-          skillIcon={<Code2 size={60} color="#4D908E" />}
-          skillTitle={programming?.skillName}
-          skills={programming?.skillValues?.join(",")}
-        />
-        <Skill
-          skillIcon={<Brain size={60} color="#02141B" fill="#4D908E" />}
-          skillTitle={brains?.skillName}
-          skills={brains?.skillValues?.join(",")}
-        />
-        <Skill
-          skillIcon={<Languages size={60} color="#4D908E" />}
-          skillTitle={languages?.skillName}
-          skills={languages?.skillValues?.join(", ")}
-        />
+        {mainData &&
+          mainData?.map((skill: ISkill, index: number) => {
+            console.log(skill.slug);
+            if (skill?.slug === "programming") {
+              return (
+                <>
+                  <Skill
+                    key={index}
+                    skillIcon={<Code2 size={60} color="#4D908E" />}
+                    skillTitle={skill?.skillName ?? ""}
+                    skills={skill?.skillValues.join(",")}
+                  />
+                </>
+              );
+            } else if (skill?.slug === "languages") {
+              return (
+                <Skill
+                  key={index}
+                  skillIcon={<Languages size={60} color="#4D908E" />}
+                  skillTitle={skill?.skillName ?? ""}
+                  skills={skill?.skillValues.join(",")}
+                />
+              );
+            } else {
+              return (
+                <Skill
+                  key={index}
+                  skillIcon={<Brain size={60} color="#02141B" fill="#4D908E" />}
+                  skillTitle={skill?.skillName ?? ""}
+                  skills={skill?.skillValues.join(",")}
+                />
+              );
+            }
+          })}
       </div>
     </div>
   );

@@ -25,7 +25,10 @@ const query = `query {
       lastName,
       profession,
       schools,
-      linkedInUrl
+      linkedInUrl,
+      aboutMe{
+        json
+      }
     }
   }
 }`;
