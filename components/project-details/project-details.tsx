@@ -19,6 +19,7 @@ export const ProjectDetails = ({
   slug,
   type,
 }: IProjectDetails) => {
+
   return (
     <div
       className={`flex flex-row space-y-10 justify-between ${
@@ -27,16 +28,20 @@ export const ProjectDetails = ({
     >
       <div className="flex flex-col space-y-20 py-5">
         <Link
-          href={`/${slug}/${type?.toLocaleLowerCase()}`}
+          href={`/${type?.toLocaleLowerCase()}/${slug}/${type?.toLocaleLowerCase()+"s"}`}
           className="flex flex-col justify-center my-auto"
         >
           <h1 className="text-xl"> {projectTitle ?? `Project Title`}</h1>
           <p> {projectDescription ?? `Project Description `}</p>
         </Link>
         <div className="flex flex-row space-x-3">
-          <span className="bg-[#1F3B4D] text-sm p-2 rounded">Tag 1</span>
-          <span className="bg-[#1F3B4D] text-sm p-2 rounded">Tag 2</span>
-          <span className="bg-[#1F3B4D] text-sm p-2 rounded">Tag 3</span>
+          {tags && tags?.length > 0
+            ? tags?.map((tag: string, index: number) => (
+                <span className="bg-[#1F3B4D] text-sm p-2 rounded" key={index}>
+                  {tag}
+                </span>
+              ))
+            : "No Tags"}
         </div>
       </div>
       <div className="flex flex-col justify-center my-auto">

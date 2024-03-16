@@ -5,19 +5,22 @@ import { Projects } from "@/components/projects/Projects";
 import { Publications } from "@/components/publications/Publications";
 import { Skills } from "@/components/skills/Skills";
 import { client } from "@/lib/contentful";
-import { IHero, ISkill } from "@/utils/Interfaces";
+import { IHero, IProjects, ISkill } from "@/utils/Interfaces";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [heroData, setHeroData] = useState<IHero>();
   const [skillsData, setSkillsData] = useState<ISkill[]>();
+  const [projectsData, setProjectsData] = useState<IProjects[]>();
 
   useEffect(() => {
+    //Hero
     client.getEntries({ content_type: "hero" }).then((response: any) => {
       const { fields } = response?.items[0];
       const heroResponse: IHero = fields;
       setHeroData(heroResponse);
     });
+    // Skills
     client.getEntries({ content_type: "skills" }).then((response: any) => {
       const formulatedSkillsData: ISkill[] = response?.items?.map(
         (value: any, index: number) => {
@@ -32,6 +35,33 @@ export default function Home() {
       );
       setSkillsData(formulatedSkillsData);
     });
+
+    // Projects
+    client.getEntries({ content_type: "projects" }).then((response: any) => {
+      const formulatedProjects: IProjects[] = response?.items?.map(
+        (value: any) => {
+          const {
+            description,
+            tags,
+            thumbnail,
+            title,
+            slug,
+            descriptionSummary,
+          } = value?.fields;
+          const actualProject: IProjects = {
+            description,
+            tags: tags,
+            thumbnail,
+            slug,
+            title,
+            descriptionSummary,
+          };
+          return actualProject;
+        }
+      );
+
+      setProjectsData(formulatedProjects);
+    });
   }, []);
 
   return (
@@ -45,7 +75,7 @@ export default function Home() {
       {/*END - SKILLS */}
 
       {/*START - PROJECTS */}
-      <Projects />
+      <Projects data={projectsData as any} />
       {/*END - PROJECTS */}
 
       {/*START - PUBLICATIONS */}

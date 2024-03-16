@@ -2,8 +2,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProjectDetails } from "@/components/project-details/project-details";
 import { AppConstants } from "@/utils/AppConstants";
+import { IProjects } from "@/utils/Interfaces";
 
-export const Projects = () => {
+interface IProjectsData {
+  data: IProjects[];
+}
+
+export const Projects = ({ data: projects }: IProjectsData) => {
   return (
     <div
       id="projects"
@@ -25,27 +30,23 @@ export const Projects = () => {
             <TabsContent value="all">
               <Card className="mt-26 bg-transparent border-transparent">
                 <CardContent className="space-y-2 text-white">
-                  <ProjectDetails
-                    slug="test-1"
-                    type={AppConstants.PROJECT}
-                    projectTitle="Sample Project 1"
-                    projectDescription="Sample Project Description"
-                    imageUrl="https://unsplash.com/photos/NSFG5sJYZgQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fHBlb3BsZSUyMGdvaW5nJTIwd29ya3xlbnwwfHx8fDE3MDk0ODM5NDh8MA&force=true&w=640"
-                  />
-                  <ProjectDetails
-                    slug="test-2"
-                    type={AppConstants.PROJECT}
-                    projectDescription="Sample Project Description 2"
-                    projectTitle="Sample Project 1"
-                    imageUrl="https://unsplash.com/photos/HAAsKeZbHAc/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8cGVvcGxlJTIwc2luZ2luZ3xlbnwwfHx8fDE3MDk0MTYxOTB8MA&force=true&w=640"
-                  />
-                  <ProjectDetails
-                    slug="test-3"
-                    type={AppConstants.PROJECT}
-                    projectDescription="Sample Project Description 2"
-                    projectTitle="Sample Project 1"
-                    imageUrl="https://unsplash.com/photos/HAAsKeZbHAc/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8cGVvcGxlJTIwc2luZ2luZ3xlbnwwfHx8fDE3MDk0MTYxOTB8MA&force=true&w=640"
-                  />
+                  {projects && projects.length > 0
+                    ? projects?.map((project: IProjects, index: number) => (
+                        <ProjectDetails
+                          key={index}
+                          tags={project?.tags}
+                          slug={project?.slug}
+                          type={AppConstants.PROJECT}
+                          projectTitle={project?.title}
+                          projectDescription={project?.descriptionSummary}
+                          imageUrl={
+                            project?.thumbnail?.fields?.file?.url
+                              ? `https://${project?.thumbnail?.fields?.file?.url}`
+                              : "https://unsplash.com/photos/NSFG5sJYZgQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fHBlb3BsZSUyMGdvaW5nJTIwd29ya3xlbnwwfHx8fDE3MDk0ODM5NDh8MA&force=true&w=640"
+                          }
+                        />
+                      ))
+                    : `No Content`}
                 </CardContent>
               </Card>
             </TabsContent>

@@ -1,3 +1,12 @@
+// Prerequeisites
+export interface File {
+  url: string;
+  details: Details;
+  fileName: string;
+  contentType: string;
+}
+// Hero
+
 export interface IHero {
   firstName: string;
   lastName: string;
@@ -25,13 +34,6 @@ export interface Fields2 {
   title: string;
   description: string;
   file: File;
-}
-
-export interface File {
-  url: string;
-  details: Details;
-  fileName: string;
-  contentType: string;
 }
 
 export interface Details {
@@ -91,4 +93,30 @@ export interface ISkill {
   skillName: string;
   skillValues: string[];
   slug: string;
+}
+
+// Projects
+export interface IProjects {
+  slug: string;
+  title: string;
+  description: Description;
+  descriptionSummary: string;
+  tags: string[];
+  thumbnail: Thumbnail;
+}
+
+export interface Description {
+  data: Data;
+  content: Content[];
+  nodeType: string;
+}
+
+export interface Thumbnail {
+  fields: Fields;
+}
+
+export interface Fields {
+  title: string;
+  description: string;
+  file: File;
 }

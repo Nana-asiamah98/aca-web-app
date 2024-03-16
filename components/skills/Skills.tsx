@@ -17,17 +17,14 @@ export const Skills = ({ mainData }: IMainSkill) => {
       <div className="flex flex-row justify-between">
         {mainData &&
           mainData?.map((skill: ISkill, index: number) => {
-            console.log(skill.slug);
             if (skill?.slug === "programming") {
               return (
-                <>
-                  <Skill
-                    key={index}
-                    skillIcon={<Code2 size={60} color="#4D908E" />}
-                    skillTitle={skill?.skillName ?? ""}
-                    skills={skill?.skillValues.join(",")}
-                  />
-                </>
+                <Skill
+                  key={index}
+                  skillIcon={<Code2 size={60} color="#4D908E" />}
+                  skillTitle={skill?.skillName ?? ""}
+                  skills={skill?.skillValues.join(",")}
+                />
               );
             } else if (skill?.slug === "languages") {
               return (
