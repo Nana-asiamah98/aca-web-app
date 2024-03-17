@@ -36,7 +36,9 @@ export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
             alt="name"
             src={
               data?.thumbnail?.fields?.file?.url
-                ? `https://${data?.thumbnail?.fields?.file?.url}`
+                ? new URL(
+                    `https://${data?.thumbnail?.fields?.file?.url}`
+                  ).toString()
                 : "https://unsplash.com/photos/s9CC2SKySJM/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzA5NjI1MDM0fA&force=true&w=1920"
             }
             className="object-none w-full h-64 rounded-sm custom-position"
