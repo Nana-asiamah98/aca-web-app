@@ -41,7 +41,9 @@ export const Projects = ({ data: projects }: IProjectsData) => {
                           projectDescription={project?.descriptionSummary}
                           imageUrl={
                             project?.thumbnail?.fields?.file?.url
-                              ? `https://${project?.thumbnail?.fields?.file?.url}`
+                              ? new URL(
+                                  `https://${project?.thumbnail?.fields?.file?.url}`
+                                ).toString()
                               : "https://unsplash.com/photos/NSFG5sJYZgQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fHBlb3BsZSUyMGdvaW5nJTIwd29ya3xlbnwwfHx8fDE3MDk0ODM5NDh8MA&force=true&w=640"
                           }
                         />
