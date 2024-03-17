@@ -22,7 +22,12 @@ export const Hero = ({ mainData }: IMainHero) => {
             alt="name"
             width={250}
             height={250}
-            src={"https://media.licdn.com/dms/image/C5603AQF5Dn__JT0kPQ/profile-displayphoto-shrink_200_200/0/1607478268909?e=2147483647&v=beta&t=3mVfgUr8ScQfAprWnkFjCd7zBcvO55Ux8EnU5T5KXLk"
+            src={
+              mainData?.userAvatar?.fields?.file?.url
+                ? new URL(
+                    `https://${mainData?.userAvatar?.fields?.file?.url}`
+                  ).toString()
+                : "https://media.licdn.com/dms/image/C5603AQF5Dn__JT0kPQ/profile-displayphoto-shrink_200_200/0/1607478268909?e=2147483647&v=beta&t=3mVfgUr8ScQfAprWnkFjCd7zBcvO55Ux8EnU5T5KXLk"
             }
             className="object-none w-44 h-44 rounded-full custom-position"
           />
