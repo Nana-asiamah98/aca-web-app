@@ -28,7 +28,7 @@ export const ProjectDetails = ({
     >
       <div className="flex flex-col space-y-20 py-5">
         <Link
-          href={`/${type?.toLocaleLowerCase()}/${slug}/${type?.toLocaleLowerCase()+"s"}`}
+          href={`/${type?.toLocaleLowerCase()}/${slug}`}
           className="flex flex-col justify-center my-auto"
         >
           <h1 className="text-xl"> {projectTitle ?? `Project Title`}</h1>
