@@ -4,7 +4,7 @@ import { AppConstants } from "@/utils/AppConstants";
 import React from "react";
 
 const Publication = () => {
-  return <InfoDetails type={AppConstants.PUBLICATION} />;
+  return <InfoDetails type={AppConstants.PUBLICATION}  />;
 };
 
 export default Publication;

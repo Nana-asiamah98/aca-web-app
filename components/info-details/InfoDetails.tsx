@@ -7,8 +7,8 @@ import { SiGooglescholar } from "react-icons/si";
 import RichText from "../contentful/RichText";
 
 interface IInfoDetails {
-  data: IProjects;
-  userInfo: IHero;
+  data?: IProjects;
+  userInfo?: IHero;
   type: string;
 }
 
