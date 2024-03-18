@@ -102,6 +102,7 @@ export interface IProjects {
   description: Description;
   descriptionSummary: string;
   tags: string[];
+  category: string;
   thumbnail: Thumbnail;
 }
 
@@ -119,4 +120,18 @@ export interface Fields {
   title: string;
   description: string;
   file: File;
+}
+
+export interface IPublication {
+  slug: string;
+  thumbnail ?: any;
+  title: string;
+  tags: string[];
+  descriptionSummary: string;
+  description: Description;
+  pdf: Pdf;
+}
+
+export interface Pdf {
+  fields: Fields;
 }

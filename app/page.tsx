@@ -5,13 +5,14 @@ import { Projects } from "@/components/projects/Projects";
 import { Publications } from "@/components/publications/Publications";
 import { Skills } from "@/components/skills/Skills";
 import { client } from "@/lib/contentful";
-import { IHero, IProjects, ISkill } from "@/utils/Interfaces";
+import { IHero, IProjects, IPublication, ISkill } from "@/utils/Interfaces";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [heroData, setHeroData] = useState<IHero>();
   const [skillsData, setSkillsData] = useState<ISkill[]>();
   const [projectsData, setProjectsData] = useState<IProjects[]>();
+  const [publicationData, setPublicationData] = useState<IPublication[]>();
 
   useEffect(() => {
     //Hero
@@ -46,6 +47,7 @@ export default function Home() {
             thumbnail,
             title,
             slug,
+            category,
             descriptionSummary,
           } = value?.fields;
           const actualProject: IProjects = {
@@ -53,6 +55,7 @@ export default function Home() {
             tags: tags,
             thumbnail,
             slug,
+            category,
             title,
             descriptionSummary,
           };
@@ -62,6 +65,33 @@ export default function Home() {
 
       setProjectsData(formulatedProjects);
     });
+
+    // Publications
+    client
+      .getEntries({ content_type: "publications" })
+      .then((response: any) => {
+        const formulatedPublications = response?.items?.map((value: any) => {
+          const {
+            slug,
+            title,
+            descriptionSummary,
+            description,
+            tags,
+            pdf,
+          }: IPublication = value?.fields;
+          const actualPublication: IPublication = {
+            slug,
+            title,
+            descriptionSummary,
+            description,
+            tags,
+            pdf,
+          };
+          return actualPublication;
+        });
+
+        setPublicationData(formulatedPublications);
+      });
   }, []);
 
   return (
@@ -79,7 +109,7 @@ export default function Home() {
       {/*END - PROJECTS */}
 
       {/*START - PUBLICATIONS */}
-      <Publications />
+      <Publications data={publicationData as any} />
       {/*END - PUBLICATIONS */}
       <div></div>
     </main>

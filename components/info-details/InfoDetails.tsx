@@ -1,23 +1,25 @@
-import { IHero, IProjects } from "@/utils/Interfaces";
+import { IHero, IProjects, IPublication } from "@/utils/Interfaces";
 import Image from "next/image";
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io";
 import { SiGooglescholar } from "react-icons/si";
 import RichText from "../contentful/RichText";
+import Head from "next/head";
 
 interface IInfoDetails {
-  data?: IProjects;
+  data?: IProjects | IPublication;
   userInfo?: IHero;
   type: string;
 }
 
 export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
+  console.log({ data });
   return (
     <div className="container flex flex-col my-10 space-y-10">
       <div className="flex flex-col justify-center w-full space-y-7">
         <h2 className="text-3xl text-gray-500">{data?.title}</h2>
-        <h3 className="text-2xl text-white">{data?.descriptionSummary}</h3>
+        <h3 className="text-xl text-white">{data?.descriptionSummary}</h3>
         <div className="flex flex-row justify-start space-x-5">
           <Link href={userInfo?.linkedInUrl ?? "#0"} target={"_blank"}>
             <IoLogoLinkedin color="#4D908E" size={40} />
@@ -80,7 +82,13 @@ export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
             alt="name"
             width={250}
             height={250}
-            src="https://media.licdn.com/dms/image/C5603AQF5Dn__JT0kPQ/profile-displayphoto-shrink_200_200/0/1607478268909?e=2147483647&v=beta&t=3mVfgUr8ScQfAprWnkFjCd7zBcvO55Ux8EnU5T5KXLk"
+            src={
+              userInfo?.userAvatar?.fields?.file?.url
+                ? new URL(
+                    `https://${userInfo?.userAvatar?.fields?.file?.url}`
+                  ).toString()
+                : ""
+            }
             className="object-none w-40 h-40 rounded-full custom-position"
           />
         </div>

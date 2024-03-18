@@ -1,8 +1,13 @@
 import React from "react";
 import { ProjectDetails } from "@/components/project-details/project-details";
 import { AppConstants } from "@/utils/AppConstants";
+import { IPublication } from "@/utils/Interfaces";
 
-export const Publications = () => {
+interface IPublicationsData {
+  data: IPublication[];
+}
+
+export const Publications = ({ data: publications }: IPublicationsData) => {
   return (
     <div
       id="publications"
@@ -12,25 +17,19 @@ export const Publications = () => {
         <span className="text-3xl text-gray-500">Publications</span>
       </div>
 
-      <div className="flex flex-col my-5 space-y-20 w-[80%]">
-        <ProjectDetails
-          slug="test-1"
-          projectTitle="Sample Publication 1"
-          projectDescription="Sample Publication Description"
-          type={AppConstants.PUBLICATION}
-        />
-        <ProjectDetails
-          slug="test-2"
-          projectTitle="Sample Publication 1"
-          projectDescription="Sample Publication Description"
-          type={AppConstants.PUBLICATION}
-        />
-        <ProjectDetails
-          slug="test-3"
-          projectTitle="Sample Publication 1"
-          projectDescription="Sample Publication Description"
-          type={AppConstants.PUBLICATION}
-        />
+      <div className="flex flex-col my-2 space-y-5 w-[80%]">
+        {publications && publications.length > 0
+          ? publications?.map((publications: IPublication, index: number) => (
+              <ProjectDetails
+                key={index}
+                tags={publications.tags}
+                slug={publications?.slug}
+                type={AppConstants.PUBLICATION}
+                projectTitle={publications?.title}
+                projectDescription={publications?.descriptionSummary}
+              />
+            ))
+          : `No Content`}
       </div>
     </div>
   );

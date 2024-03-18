@@ -52,18 +52,64 @@ export const Projects = ({ data: projects }: IProjectsData) => {
                 </CardContent>
               </Card>
             </TabsContent>
+
             <TabsContent value="my_research">
               <Card className="mt-26 bg-transparent border-transparent">
                 <CardContent className="space-y-2 text-white">
-                  <ProjectDetails slug="test-3" type={AppConstants.PROJECT} />
-                  <ProjectDetails slug="test-3" type={AppConstants.PROJECT} />
+                  {projects && projects.length > 0
+                    ? projects
+                        ?.filter(
+                          (value: IProjects, index: number) =>
+                            value?.category === "Research"
+                        )
+                        ?.map((project: IProjects, index: number) => (
+                          <ProjectDetails
+                            key={index}
+                            tags={project?.tags}
+                            slug={project?.slug}
+                            type={AppConstants.PROJECT}
+                            projectTitle={project?.title}
+                            projectDescription={project?.descriptionSummary}
+                            imageUrl={
+                              project?.thumbnail?.fields?.file?.url
+                                ? new URL(
+                                    `https://${project?.thumbnail?.fields?.file?.url}`
+                                  ).toString()
+                                : "https://unsplash.com/photos/NSFG5sJYZgQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fHBlb3BsZSUyMGdvaW5nJTIwd29ya3xlbnwwfHx8fDE3MDk0ODM5NDh8MA&force=true&w=640"
+                            }
+                          />
+                        ))
+                    : `No Content`}
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="collaborative">
               <Card className="mt-26 bg-transparent border-transparent">
                 <CardContent className="space-y-2 text-white">
-                  <span>No Content</span>
+                  {projects && projects.length > 0
+                    ? projects
+                        ?.filter(
+                          (value: IProjects, index: number) =>
+                            value?.category === "Collaborative"
+                        )
+                        ?.map((project: IProjects, index: number) => (
+                          <ProjectDetails
+                            key={index}
+                            tags={project?.tags}
+                            slug={project?.slug}
+                            type={AppConstants.PROJECT}
+                            projectTitle={project?.title}
+                            projectDescription={project?.descriptionSummary}
+                            imageUrl={
+                              project?.thumbnail?.fields?.file?.url
+                                ? new URL(
+                                    `https://${project?.thumbnail?.fields?.file?.url}`
+                                  ).toString()
+                                : "https://unsplash.com/photos/NSFG5sJYZgQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fHBlb3BsZSUyMGdvaW5nJTIwd29ya3xlbnwwfHx8fDE3MDk0ODM5NDh8MA&force=true&w=640"
+                            }
+                          />
+                        ))
+                    : `No Content`}
                 </CardContent>
               </Card>
             </TabsContent>
