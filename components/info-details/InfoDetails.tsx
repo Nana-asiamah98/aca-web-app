@@ -7,6 +7,7 @@ import { SiGooglescholar } from "react-icons/si";
 import RichText from "../contentful/RichText";
 import Head from "next/head";
 import { AppConstants } from "@/utils/AppConstants";
+import { PDFDrawer } from "../pdf-viewer/PDFDrawer";
 
 interface IInfoDetails {
   data?: IProjects | IPublication;
@@ -15,7 +16,6 @@ interface IInfoDetails {
 }
 
 export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
-  console.log({ data });
   return (
     <div className="container flex flex-col my-10 space-y-10">
       <div className="flex flex-col justify-center w-full space-y-7">
@@ -76,6 +76,20 @@ export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
       <div className="flex flex-row w-full">
         <div className="flex-grow border-t border-gray-600"></div>
       </div>
+      {type === AppConstants.PUBLICATION && data?.pdf?.fields?.title ? (
+        <div className="flex flex-row justify-start space-x-5 w-full">
+          <PDFDrawer
+            description={data?.descriptionSummary}
+            title={data?.title}
+            author={` ${userInfo?.firstName}  ${userInfo?.lastName}`}
+            pdfURL={new URL(
+              `https://${data?.pdf?.fields?.file?.url}`
+            ).toString()}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
 
       <div className="flex flex-row justify-start space-x-5 w-full">
         <div className="flex flex-row w-[20%] m-auto">
@@ -99,14 +113,6 @@ export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
           <span className="text-sm text-gray-200">{userInfo?.schools[0]}</span>
         </div>
       </div>
-
-      {type === AppConstants.PUBLICATION ? (
-        <div className="flex flex-row justify-start space-x-5 w-full">
-          <span>PDF Zone</span>
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 };

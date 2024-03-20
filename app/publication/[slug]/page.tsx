@@ -11,7 +11,6 @@ interface IPublicationsData {
 }
 
 const Publication = ({ params }: { params: { slug: string } }) => {
-  console.log({ params });
   const [publication, setPublication] = useState<IPublication>();
   const [heroData, setHeroData] = useState<IHero>();
 

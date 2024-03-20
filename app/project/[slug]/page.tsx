@@ -21,6 +21,7 @@ const Project = ({ params }: { params: { slug: string } }) => {
     client.getEntries({ content_type: "projects" }).then((response: any) => {
       const formulatedProjects: IProjects[] = response?.items
         ?.map((value: any) => {
+          console.log(value?.fields);
           const {
             description,
             tags,

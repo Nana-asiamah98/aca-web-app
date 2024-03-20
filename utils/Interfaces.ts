@@ -104,6 +104,7 @@ export interface IProjects {
   tags: string[];
   category: string;
   thumbnail: Thumbnail;
+  pdf?: Pdf;
 }
 
 export interface Description {
@@ -124,12 +125,12 @@ export interface Fields {
 
 export interface IPublication {
   slug: string;
-  thumbnail ?: any;
+  thumbnail?: any;
   title: string;
   tags: string[];
   descriptionSummary: string;
   description: Description;
-  pdf: Pdf;
+  pdf?: Pdf;
 }
 
 export interface Pdf {
