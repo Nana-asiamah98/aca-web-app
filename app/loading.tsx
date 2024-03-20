@@ -3,7 +3,7 @@ import React from "react";
 const loading = () => {
   return (
     <div className="flex flex-col min-h-screen ">
-      // Hero
+     
       <div className="flex flex-row justify-start px-52 text-white my-10 mx-auto w-full h-auto animate-pulse">
         <div className="flex flex-col w-[20%] items-center justify-between gap-4">
           <div>
@@ -27,7 +27,6 @@ const loading = () => {
           <p className="h-4 bg-gray-200 rounded w-full mt-5"></p>
         </div>
       </div>
-      // Skills
       <div
         id="skills"
         className="flex flex-col justify-start px-52 bg-gray-900 text-white my-20 mx-auto w-full h-auto space-y-20 py-20 animate-pulse"
@@ -41,7 +40,6 @@ const loading = () => {
           <div className="h-16 w-16 bg-gray-100 rounded-lg"></div>
         </div>
       </div>
-      //Projects
       <div
         id="projects"
         className="flex flex-row justify-start px-52 text-white  mx-auto w-full h-auto animate-pulse"
@@ -79,7 +77,6 @@ const loading = () => {
           </div>
         </div>
       </div>
-      // Publications
       <div
         id="publications"
         className="flex flex-row justify-start px-52 bg-gray-200 text-white my-auto w-full py-4 h-auto animate-pulse"
