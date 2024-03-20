@@ -6,6 +6,7 @@ import { IoLogoLinkedin } from "react-icons/io";
 import { SiGooglescholar } from "react-icons/si";
 import RichText from "../contentful/RichText";
 import Head from "next/head";
+import { AppConstants } from "@/utils/AppConstants";
 
 interface IInfoDetails {
   data?: IProjects | IPublication;
@@ -98,6 +99,14 @@ export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
           <span className="text-sm text-gray-200">{userInfo?.schools[0]}</span>
         </div>
       </div>
+
+      {type === AppConstants.PUBLICATION ? (
+        <div className="flex flex-row justify-start space-x-5 w-full">
+          <span>PDF Zone</span>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
