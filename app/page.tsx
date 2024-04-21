@@ -95,7 +95,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-screen ">
+    <main className="flex flex-col min-h-screen bg-[#00171F]">
       {/*START - HERO */}
       <Hero mainData={heroData as any} />
       {/*END - HERO */}

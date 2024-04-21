@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-[#00171F]`}>
         <div className="flex flex-row text-black bg-white py-5 pl-52 w-full ">
           <MainNav />
         </div>

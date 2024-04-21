@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 
 export const Footer = () => {
   return (
-    <div className=" flex flex-row text-white space-x-2 pl-52 my-10">
+    <div className=" flex flex-row text-white space-x-2 pl-52 my-10 ">
       <span className="text-sm">Designed By </span>
       <Link
         className="font-semibold "
