@@ -102,7 +102,7 @@ export default function Home() {
       {/*END - HERO */}
 
       {/*START - SKILLS */}
-      {/* <Skills mainData={skillsData as any} /> */}
+      <Skills mainData={skillsData as any} />
       {/*END - SKILLS */}
 
       {/*START - PROJECTS */}

@@ -32,7 +32,7 @@ export const Hero = ({ mainData }: IMainHero) => {
             className="object-none w-44 h-44 rounded-full custom-position"
           />
         </div>
-        <div className="flex flex-col mb:flex-col lg:flex-col items-center text-center gap-5">
+        <div className="flex flex-col md:flex-col lg:flex-col items-center text-center gap-5">
           <span className="font-bold text-lg">
             {`${mainData?.firstName}  ${mainData?.lastName}` ??
               `Lastname Firstname`}
@@ -61,7 +61,7 @@ export const Hero = ({ mainData }: IMainHero) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row lg:flex-col mb:items-center w-full p-8 space-y-5  mb:w-[80%]">
+      <div className="flex flex-col md:flex-col lg:flex-col mb:items-center w-full p-8 space-y-5  mb:w-[80%]">
         <h2 className="text-2xl font-bold text-gray-500">About Me</h2>
         {mainData?.aboutMe ? (
           <RichText content={mainData?.aboutMe} />
