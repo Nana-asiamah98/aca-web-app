@@ -92,7 +92,7 @@ export const InfoDetails = ({ type, data, userInfo }: IInfoDetails) => {
       )}
 
       <div className="flex flex-row justify-start space-x-5 w-full">
-        <div className="flex flex-row w-[20%] m-auto">
+        <div className="hidden lg:flex lg:flex-row lg:w-[20%] lg:m-auto">
           <Image
             alt="name"
             width={250}

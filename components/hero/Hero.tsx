@@ -15,8 +15,8 @@ export const Hero = ({ mainData }: IMainHero) => {
     return newURL;
   };
   return (
-    <div className="flex flex-row justify-start px-52 text-white my-10 mx-auto w-full h-auto">
-      <div className="flex flex-col w-[20%] items-center justify-between gap-4">
+    <div className="flex flex-col mb:flex-row lg:flex-row justify-start  md:px-52 text-white my-10 mx-auto w-full mb:w-full lg:w-full h-auto md:my-20 space-y-10">
+      <div className="flex flex-col  w-full mb:w-[20%] lg:w-[20%] items-center text-center justify-between gap-4">
         <div>
           <Image
             alt="name"
@@ -32,7 +32,7 @@ export const Hero = ({ mainData }: IMainHero) => {
             className="object-none w-44 h-44 rounded-full custom-position"
           />
         </div>
-        <div className="flex flex-col items-center gap-5">
+        <div className="flex flex-col md:flex-col lg:flex-col items-center text-center gap-5">
           <span className="font-bold text-lg">
             {`${mainData?.firstName}  ${mainData?.lastName}` ??
               `Lastname Firstname`}
@@ -40,14 +40,14 @@ export const Hero = ({ mainData }: IMainHero) => {
           <span className="text-gray-500">
             {mainData?.profession ?? `Profession`}
           </span>
-          <div className="flex flex-col items-center gap-3 mt-5">
+          <div className="flex flex-col mb:flex-col lg:flex-col items-center gap-3 mt-5">
             {mainData?.schools &&
               mainData?.schools.map((school: string, index: number) => (
                 <span key={index} className="text-[#4D908E] text-md">
                   {school ?? `School `}
                 </span>
               ))}
-            <div className="flex flex-row justify-between space-x-4">
+            <div className="flex flex-row md:flex-row lg:flex-row justify-between space-x-4">
               <Link href={mainData?.linkedInUrl ?? "#0"} target={"_blank"}>
                 <IoLogoLinkedin color="#4D908E" size={40} />
               </Link>
@@ -61,8 +61,8 @@ export const Hero = ({ mainData }: IMainHero) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-[80%] mx-40">
-        <h2 className="text-3xl font-bold text-gray-500">About Me</h2>
+      <div className="flex flex-col md:flex-col lg:flex-col mb:items-center w-full p-8 space-y-5  mb:w-[80%]">
+        <h2 className="text-2xl font-bold text-gray-500">About Me</h2>
         {mainData?.aboutMe ? (
           <RichText content={mainData?.aboutMe} />
         ) : (

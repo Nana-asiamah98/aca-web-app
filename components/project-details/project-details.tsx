@@ -29,27 +29,27 @@ export const ProjectDetails = ({
       <div className="flex flex-col space-y-20 py-5">
         <Link
           href={`/${type?.toLocaleLowerCase()}/${slug}`}
-          className="flex flex-col justify-center my-auto"
+          className="flex flex-col space-y-3 justify-center my-auto"
         >
           <h1 className="text-xl"> {projectTitle ?? `Project Title`}</h1>
-          <p> {projectDescription ?? `Project Description `}</p>
+          <p className="text-[10px] md:text-[13px] lg:text-[18px]"> {projectDescription ?? `Project Description `}</p>
         </Link>
         <div className="flex flex-row space-x-3">
           {tags && tags?.length > 0
             ? tags?.map((tag: string, index: number) => (
-                <span className="bg-[#1F3B4D] text-sm p-2 rounded" key={index}>
+                <span className="bg-[#1F3B4D] text-[10px] lg:text-sm  p-2 rounded" key={index}>
                   {tag}
                 </span>
               ))
             : "No Tags"}
         </div>
       </div>
-      <div className="flex flex-col justify-center my-auto">
+      <div className="hidden lg:flex lg:flex-col lg:justify-center lg:my-auto">
         {imageUrl ? (
           <Image
             alt="name"
-            width={300}
-            height={300}
+            width={250}
+            height={250}
             src={imageUrl}
             className="object-none w-44 h-44 rounded custom-position"
           />

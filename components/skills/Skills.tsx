@@ -9,12 +9,12 @@ export const Skills = ({ mainData }: IMainSkill) => {
   return (
     <div
       id="skills"
-      className="flex flex-col justify-start px-52 bg-[#021116] text-white my-20 mx-auto w-full h-auto space-y-20 py-20"
+      className="flex flex-col mb:flex-row lg:flex-col justify-start md:px-52 bg-[#021116] text-white my-20 mx-auto w-full h-auto space-y-20 py-20"
     >
       <div className="flex flex-row justify-center">
         <span className="text-teal-600 text-3xl">Skills</span>
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-col  lg:flex-row justify-between space-y-10 lg:space-y-5">
         {mainData &&
           mainData?.map((skill: ISkill, index: number) => {
             if (skill?.slug === "programming") {

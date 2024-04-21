@@ -8,10 +8,10 @@ interface ISkill {
 
 export const Skill = ({ skillIcon, skillTitle, skills }: ISkill) => {
   return (
-    <div className="flex flex-col space-y-5 items-center">
+    <div className="flex flex-col space-y-5 items-center w-full">
       {skillIcon}
       <span>{skillTitle}</span>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center ">
         <span>{skills}</span>
       </div>
     </div>

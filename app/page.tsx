@@ -95,7 +95,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-screen ">
+    <main className="flex flex-col min-h-screen w-full">
+      
       {/*START - HERO */}
       <Hero mainData={heroData as any} />
       {/*END - HERO */}
@@ -111,7 +112,6 @@ export default function Home() {
       {/*START - PUBLICATIONS */}
       <Publications data={publicationData as any} />
       {/*END - PUBLICATIONS */}
-      <div></div>
     </main>
   );
 }
