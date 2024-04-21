@@ -32,7 +32,7 @@ export const ProjectDetails = ({
           className="flex flex-col space-y-3 justify-center my-auto"
         >
           <h1 className="text-xl"> {projectTitle ?? `Project Title`}</h1>
-          <p className="text-[10px] md:text-[13px] lg:text-[18px]"> {projectDescription ?? `Project Description `}</p>
+          <p className="text-[13px]  lg:text-[18px]"> {projectDescription ?? `Project Description `}</p>
         </Link>
         <div className="flex flex-row space-x-3">
           {tags && tags?.length > 0
