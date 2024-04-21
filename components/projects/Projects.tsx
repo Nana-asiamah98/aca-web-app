@@ -15,7 +15,7 @@ export const Projects = ({ data: projects }: IProjectsData) => {
       className="flex flex-col md:flex-col lg:flex-row justify-start px-12 md:px-52 lg:px-52 text-white  mx-auto w-full h-auto"
     >
       <div className="flex flex-col md:flex-col justify-between my-5 w-[20%]">
-        <span className="text-3xl text-gray-500">Projects</span>
+        <span className="text-2xl text-gray-500">Projects</span>
       </div>
 
       <div className="flex flex-col my-5 space-y-10 w-[80%]">

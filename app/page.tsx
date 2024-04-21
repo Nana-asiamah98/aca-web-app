@@ -110,7 +110,7 @@ export default function Home() {
       {/*END - PROJECTS */}
 
       {/*START - PUBLICATIONS */}
-      {/* <Publications data={publicationData as any} /> */}
+      <Publications data={publicationData as any} />
       {/*END - PUBLICATIONS */}
     </main>
   );
