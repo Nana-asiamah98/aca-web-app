@@ -106,7 +106,7 @@ export default function Home() {
       {/*END - SKILLS */}
 
       {/*START - PROJECTS */}
-      {/* <Projects data={projectsData as any} /> */}
+      <Projects data={projectsData as any} />
       {/*END - PROJECTS */}
 
       {/*START - PUBLICATIONS */}
