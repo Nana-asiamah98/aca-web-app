@@ -3,9 +3,11 @@
 import { Hero } from "@/components/hero/Hero";
 import { Projects } from "@/components/projects/Projects";
 import { Publications } from "@/components/publications/Publications";
+import { BsCaretUp } from "react-icons/bs";
 import { Skills } from "@/components/skills/Skills";
 import { client } from "@/lib/contentful";
 import { IHero, IProjects, IPublication, ISkill } from "@/utils/Interfaces";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -96,7 +98,6 @@ export default function Home() {
 
   return (
     <main className="flex flex-col min-h-screen w-full">
-      
       {/*START - HERO */}
       <Hero mainData={heroData as any} />
       {/*END - HERO */}
@@ -112,6 +113,15 @@ export default function Home() {
       {/*START - PUBLICATIONS */}
       <Publications data={publicationData as any} />
       {/*END - PUBLICATIONS */}
+
+      <div className="fixed bottom-3 right-4 ">
+        <Link
+          href={`/#`}
+          className="bg-[#1F3B4D] hover:bg-[#2a5068] text-white font-bold py-1 px-2  lg:py-2 lg:px-4 rounded-full shadow-lg"
+        >
+          Scroll Up
+        </Link>
+      </div>
     </main>
   );
 }

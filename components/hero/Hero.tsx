@@ -16,7 +16,7 @@ export const Hero = ({ mainData }: IMainHero) => {
     return newURL;
   };
   return (
-    <div className="flex flex-col md:flex-col lg:flex-row justify-start md:px-32 lg:px-52 text-white my-10 mx-auto w-full md:w-full lg:w-full h-auto space-x-5">
+    <div className="flex flex-col md:flex-col lg:flex-row justify-start md:px-32 lg:px-52 text-white my-10 mx-auto w-full md:w-full lg:w-full h-auto ">
       <div className="flex flex-col w-auto mb:w-[20%] lg:w-[20%] items-center text-center justify-between gap-4">
         <div className="w-auto h-auto">
           <Image
