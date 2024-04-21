@@ -95,23 +95,23 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-screen ">
+    <main className="flex flex-col min-h-screen w-full">
+      
       {/*START - HERO */}
       <Hero mainData={heroData as any} />
       {/*END - HERO */}
 
       {/*START - SKILLS */}
-      <Skills mainData={skillsData as any} />
+      {/* <Skills mainData={skillsData as any} /> */}
       {/*END - SKILLS */}
 
       {/*START - PROJECTS */}
-      <Projects data={projectsData as any} />
+      {/* <Projects data={projectsData as any} /> */}
       {/*END - PROJECTS */}
 
       {/*START - PUBLICATIONS */}
-      <Publications data={publicationData as any} />
+      {/* <Publications data={publicationData as any} /> */}
       {/*END - PUBLICATIONS */}
-      <div></div>
     </main>
   );
 }
